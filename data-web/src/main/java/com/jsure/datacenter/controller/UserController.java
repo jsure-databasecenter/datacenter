@@ -144,8 +144,8 @@ public class UserController {
         JsonResult r = new JsonResult();
         try {
             User u = users.get(id);
-            u.setUsername(user.getUsername());
-            u.setAge(user.getAge());
+//            u.setUsername(user.getUsername());
+//            u.setAge(user.getAge());
             users.put(id, u);
             r.setResult(u);
             r.setStatus("ok");

@@ -11,7 +11,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 /**
  * @Author: wuxiaobiao
- * @Description: Swagger2
+ * @Description: Swagger2 http://localhost:8080/swagger-ui.html
  * @Date: Created in 2018/4/9
  * @Time: 15:21
  * I am a Code Man -_-!
