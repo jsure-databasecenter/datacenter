@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jsure.datacenter.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.jsure.datacenter.entitymodel.Role" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="NVARCHAR" />
+    <result column="ParentId" property="parentid" jdbcType="INTEGER" />
+    <result column="Info" property="info" jdbcType="NVARCHAR" />
+    <result column="BusinessPermissionString" property="businesspermissionstring" jdbcType="LONGNVARCHAR" />
+    <result column="CreateTime" property="createtime" jdbcType="BIGINT" />
+    <result column="UpdateTime" property="updatetime" jdbcType="BIGINT" />
+    <result column="IsDelete" property="isdelete" jdbcType="BIT" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="WriterId" property="writerid" jdbcType="INTEGER" />
+    <result column="WriterRoleId" property="writerroleid" jdbcType="INTEGER" />
+    <result column="DepartmentId" property="departmentid" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jsure.datacenter.entitymodel.Role" >
+    insert into Role (ID, Name, ParentId, 
+      Info, BusinessPermissionString, CreateTime, 
+      UpdateTime, IsDelete, Status, 
+      WriterId, WriterRoleId, DepartmentId
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=NVARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{info,jdbcType=NVARCHAR}, #{businesspermissionstring,jdbcType=LONGNVARCHAR}, #{createtime,jdbcType=BIGINT}, 
+      #{updatetime,jdbcType=BIGINT}, #{isdelete,jdbcType=BIT}, #{status,jdbcType=INTEGER}, 
+      #{writerid,jdbcType=INTEGER}, #{writerroleid,jdbcType=INTEGER}, #{departmentid,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jsure.datacenter.entitymodel.Role" >
+    insert into Role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="parentid != null" >
+        ParentId,
+      </if>
+      <if test="info != null" >
+        Info,
+      </if>
+      <if test="businesspermissionstring != null" >
+        BusinessPermissionString,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="writerid != null" >
+        WriterId,
+      </if>
+      <if test="writerroleid != null" >
+        WriterRoleId,
+      </if>
+      <if test="departmentid != null" >
+        DepartmentId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=NVARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=NVARCHAR},
+      </if>
+      <if test="businesspermissionstring != null" >
+        #{businesspermissionstring,jdbcType=LONGNVARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=BIGINT},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="writerid != null" >
+        #{writerid,jdbcType=INTEGER},
+      </if>
+      <if test="writerroleid != null" >
+        #{writerroleid,jdbcType=INTEGER},
+      </if>
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectPermissionByRoleId" parameterType="Integer" resultMap="BaseResultMap">
+    select BusinessPermissionString
+    from Role
+    WHERE id=#{roleId,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jsure.datacenter.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.jsure.datacenter.entitymodel.User" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="RoleId" property="roleid" jdbcType="INTEGER" />
+    <result column="LoginName" property="loginname" jdbcType="NVARCHAR" />
+    <result column="DeleteID1" property="deleteid1" jdbcType="BIGINT" />
+    <result column="FullName" property="fullname" jdbcType="NVARCHAR" />
+    <result column="Mobile" property="mobile" jdbcType="BIGINT" />
+    <result column="DeleteID2" property="deleteid2" jdbcType="BIGINT" />
+    <result column="TelePhone" property="telephone" jdbcType="NVARCHAR" />
+    <result column="ProvinceId" property="provinceid" jdbcType="INTEGER" />
+    <result column="CityId" property="cityid" jdbcType="INTEGER" />
+    <result column="DistrictId" property="districtid" jdbcType="INTEGER" />
+    <result column="Address" property="address" jdbcType="NVARCHAR" />
+    <result column="Weixin" property="weixin" jdbcType="NVARCHAR" />
+    <result column="QQ" property="qq" jdbcType="BIGINT" />
+    <result column="Job" property="job" jdbcType="SMALLINT" />
+    <result column="CreateTime" property="createtime" jdbcType="BIGINT" />
+    <result column="UpdateTime" property="updatetime" jdbcType="BIGINT" />
+    <result column="IsDelete" property="isdelete" jdbcType="BIT" />
+    <result column="Status" property="status" jdbcType="INTEGER" />
+    <result column="Password" property="password" jdbcType="LONGNVARCHAR" />
+    <result column="Sex" property="sex" jdbcType="TINYINT" />
+    <result column="WriterId" property="writerid" jdbcType="INTEGER" />
+    <result column="WriterRoleId" property="writerroleid" jdbcType="INTEGER" />
+    <result column="IconId" property="iconid" jdbcType="INTEGER" />
+    <result column="DDUserId" property="dduserid" jdbcType="NVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jsure.datacenter.entitymodel.User" >
+    insert into User (ID, RoleId, LoginName, 
+      DeleteID1, FullName, Mobile, 
+      DeleteID2, TelePhone, ProvinceId, 
+      CityId, DistrictId, Address, 
+      Weixin, QQ, Job, CreateTime, 
+      UpdateTime, IsDelete, Status, 
+      Password, Sex, WriterId, 
+      WriterRoleId, IconId, DDUserId
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleid,jdbcType=INTEGER}, #{loginname,jdbcType=NVARCHAR}, 
+      #{deleteid1,jdbcType=BIGINT}, #{fullname,jdbcType=NVARCHAR}, #{mobile,jdbcType=BIGINT}, 
+      #{deleteid2,jdbcType=BIGINT}, #{telephone,jdbcType=NVARCHAR}, #{provinceid,jdbcType=INTEGER}, 
+      #{cityid,jdbcType=INTEGER}, #{districtid,jdbcType=INTEGER}, #{address,jdbcType=NVARCHAR}, 
+      #{weixin,jdbcType=NVARCHAR}, #{qq,jdbcType=BIGINT}, #{job,jdbcType=SMALLINT}, #{createtime,jdbcType=BIGINT}, 
+      #{updatetime,jdbcType=BIGINT}, #{isdelete,jdbcType=BIT}, #{status,jdbcType=INTEGER}, 
+      #{password,jdbcType=LONGNVARCHAR}, #{sex,jdbcType=TINYINT}, #{writerid,jdbcType=INTEGER}, 
+      #{writerroleid,jdbcType=INTEGER}, #{iconid,jdbcType=INTEGER}, #{dduserid,jdbcType=NVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jsure.datacenter.entitymodel.User" >
+    insert into User
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleid != null" >
+        RoleId,
+      </if>
+      <if test="loginname != null" >
+        LoginName,
+      </if>
+      <if test="deleteid1 != null" >
+        DeleteID1,
+      </if>
+      <if test="fullname != null" >
+        FullName,
+      </if>
+      <if test="mobile != null" >
+        Mobile,
+      </if>
+      <if test="deleteid2 != null" >
+        DeleteID2,
+      </if>
+      <if test="telephone != null" >
+        TelePhone,
+      </if>
+      <if test="provinceid != null" >
+        ProvinceId,
+      </if>
+      <if test="cityid != null" >
+        CityId,
+      </if>
+      <if test="districtid != null" >
+        DistrictId,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="weixin != null" >
+        Weixin,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="job != null" >
+        Job,
+      </if>
+      <if test="createtime != null" >
+        CreateTime,
+      </if>
+      <if test="updatetime != null" >
+        UpdateTime,
+      </if>
+      <if test="isdelete != null" >
+        IsDelete,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="password != null" >
+        Password,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="writerid != null" >
+        WriterId,
+      </if>
+      <if test="writerroleid != null" >
+        WriterRoleId,
+      </if>
+      <if test="iconid != null" >
+        IconId,
+      </if>
+      <if test="dduserid != null" >
+        DDUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null" >
+        #{loginname,jdbcType=NVARCHAR},
+      </if>
+      <if test="deleteid1 != null" >
+        #{deleteid1,jdbcType=BIGINT},
+      </if>
+      <if test="fullname != null" >
+        #{fullname,jdbcType=NVARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=BIGINT},
+      </if>
+      <if test="deleteid2 != null" >
+        #{deleteid2,jdbcType=BIGINT},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=NVARCHAR},
+      </if>
+      <if test="provinceid != null" >
+        #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="districtid != null" >
+        #{districtid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=NVARCHAR},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=NVARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=BIGINT},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=SMALLINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=BIGINT},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=LONGNVARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="writerid != null" >
+        #{writerid,jdbcType=INTEGER},
+      </if>
+      <if test="writerroleid != null" >
+        #{writerroleid,jdbcType=INTEGER},
+      </if>
+      <if test="iconid != null" >
+        #{iconid,jdbcType=INTEGER},
+      </if>
+      <if test="dduserid != null" >
+        #{dduserid,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByPrimaryKey" parameterType="com.jsure.datacenter.entitymodel.User" resultMap="BaseResultMap" >
+     select ID, RoleId, LoginName,
+      DeleteID1, FullName, Mobile,
+      DeleteID2, TelePhone, ProvinceId,
+      CityId, DistrictId, Address,
+      Weixin, QQ, Job, CreateTime,
+      UpdateTime, IsDelete, Status,
+      Password, Sex, WriterId,
+      WriterRoleId, IconId, DDUserId
+      from [User]
+      WHERE
+      ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

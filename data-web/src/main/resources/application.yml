@@ -4,3 +4,14 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
+#配置日志
+logging:
+    level:
+        org.springframework.web: debug #按照包名不同制定不同日志级别
+        com.alibaba: debug
+        com.runtong.agri: info
+    file: /data/appLogs/jsure-data/data-center.log
+    pattern:
+      console: '%d{yyyy-MM-dd HH:mm:ss} %level %msg%n'
+      level: info
