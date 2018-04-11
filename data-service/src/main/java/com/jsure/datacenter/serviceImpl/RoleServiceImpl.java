@@ -1,7 +1,7 @@
 package com.jsure.datacenter.serviceImpl;
 
-import com.jsure.datacenter.model.entitymodel.Role;
 import com.jsure.datacenter.mapper.RoleMapper;
+import com.jsure.datacenter.model.entitymodel.Role;
 import com.jsure.datacenter.model.resultmodel.RoleResult;
 import com.jsure.datacenter.service.RoleService;
 import com.jsure.datacenter.utils.BeanMapper;
@@ -34,17 +34,17 @@ public class RoleServiceImpl implements RoleService {
     public String[] queryPermission(Integer roleId) {
         Role role = roleMapper.selectPermissionByRoleId(roleId);
         //数据判空
-        if(ObjectUtils.isNullOrEmpty(role)){
+        if (ObjectUtils.isNullOrEmpty(role)) {
             return null;
         }
         RoleResult result = new RoleResult();
         BeanMapper.copy(role, result);
         //取出所有权限
-        String businesspermission= result.getBusinesspermissionstring();
+        String businesspermission = result.getBusinesspermissionstring();
         String[] permission = null;
         //将权限字符串拆分成数组
-        if(ObjectUtils.isNotNullAndEmpty(businesspermission)){
-            permission = result.getBusinesspermissionstring().split(",");
+        if (ObjectUtils.isNotNullAndEmpty(businesspermission)) {
+            permission = businesspermission.split(",");
         }
         //返回角色权限数组
         return permission;

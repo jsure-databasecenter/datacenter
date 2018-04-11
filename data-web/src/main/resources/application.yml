@@ -1,8 +1,14 @@
+server:
+  port: 8080 #指定server绑定的地址
+  tomcat:
+      uri-encoding: UTF-8 #默认字符集
+  compression:
+      enabled: true #是否开启压缩，默认为false.
 spring:
   profiles:
-    active: local
+    active: local  #制定配置文件
   jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss  #指定时间格式及时差
     time-zone: GMT+8
 
 #配置日志
@@ -10,8 +16,13 @@ logging:
     level:
         org.springframework.web: debug #按照包名不同制定不同日志级别
         com.alibaba: debug
-        com.runtong.agri: info
-    file: /data/appLogs/jsure-data/data-center.log
+        com.jsure.datacenter: info
+        com.jsure.datacenter.servviceImpl: "OFF" #屏蔽该包下的日志记录
     pattern:
       console: '%d{yyyy-MM-dd HH:mm:ss} %level %msg%n'
       level: info
+
+
+
+
+

@@ -1,5 +1,3 @@
-server:
-  port: 8080
 #mysql连接
 #spring:
 #  datasource:
@@ -24,7 +22,6 @@ server:
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
   typeAliasesPackage: com.jsure.datacenter.entitymodel
-
 
 spring:
   datasource:

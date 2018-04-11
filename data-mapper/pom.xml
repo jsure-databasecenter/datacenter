@@ -5,7 +5,7 @@
 
 	<groupId>com.jsure.datacenter</groupId>
 	<artifactId>data-mapper</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>data-mapper</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>com.jsure.datacenter</groupId>
 		<artifactId>datacenter</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 
 
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>com.jsure.datacenter</groupId>
 			<artifactId>data-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 
 		<!-- mybatis依赖 -->

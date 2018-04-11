@@ -1,5 +1,3 @@
-server:
-  port: 8080
 #mysql连接
 #spring:
 #  datasource:

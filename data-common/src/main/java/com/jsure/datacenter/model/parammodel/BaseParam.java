@@ -8,14 +8,14 @@ import java.util.Date;
 
 /**
  * @Author: wuxiaobiao
- * @Description:
+ * @Description: Base入参
  * @Date: Created in 2018/4/11
  * @Time: 14:56
  * I am a Code Man -_-!
  */
 @Getter
 @Setter
-public class BaseParam implements Serializable{
+public class BaseParam implements Serializable {
 
     private static final long serialVersionUID = 7918016316921875617L;
 
