@@ -1,6 +1,6 @@
 package com.jsure.datacenter.service;
 
-import com.jsure.datacenter.entitymodel.User;
+import com.jsure.datacenter.model.resultmodel.UserResut;
 
 /**
  * @Author: wuxiaobiao
@@ -11,5 +11,19 @@ import com.jsure.datacenter.entitymodel.User;
  */
 public interface UserService {
 
-    User queryUsers(int id);
+    /**
+     * 查询用户信息
+     *
+     * @param id
+     * @return
+     */
+    UserResut queryUserInfo(Integer id);
+
+    /**
+     * 查询用户对应的角色
+     *
+     * @param id
+     * @return
+     */
+    Integer queryUserforRoleId(Integer id);
 }

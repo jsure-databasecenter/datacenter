@@ -1,6 +1,6 @@
 package com.jsure.datacenter.controller;
 
-import com.jsure.datacenter.entitymodel.User;
+import com.jsure.datacenter.model.entitymodel.User;
 import com.jsure.datacenter.utils.JsonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

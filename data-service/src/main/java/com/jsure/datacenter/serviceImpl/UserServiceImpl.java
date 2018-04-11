@@ -1,8 +1,14 @@
 package com.jsure.datacenter.serviceImpl;
 
-import com.jsure.datacenter.entitymodel.User;
+import com.jsure.datacenter.model.entitymodel.User;
+import com.jsure.datacenter.model.enummodel.JsureErrorEnum;
+import com.jsure.datacenter.exception.JsureException;
 import com.jsure.datacenter.mapper.UserMapper;
+import com.jsure.datacenter.model.resultmodel.RoleResult;
+import com.jsure.datacenter.model.resultmodel.UserResut;
 import com.jsure.datacenter.service.UserService;
+import com.jsure.datacenter.utils.BeanMapper;
+import com.jsure.datacenter.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +26,26 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User queryUsers(int id) {
-        return userMapper.selectByPrimaryKey(id);
+    public UserResut queryUserInfo(Integer id) {
+        User user = userMapper.selectByPrimaryKey(id);
+        //如果没有查询到数据
+        if(ObjectUtils.isNullOrEmpty(user)){
+            throw new JsureException(JsureErrorEnum.ERROR_CODE_341004.getErrorCode(),
+                    JsureErrorEnum.ERROR_CODE_341004.getErrorDesc());
+        }
+        UserResut result = new UserResut();
+        BeanMapper.copy(user, result);
+        return result;
+    }
+
+    @Override
+    public Integer queryUserforRoleId(Integer id) {
+        Integer roleId = userMapper.selectRoleIdByUserId(id);
+        //如果没有查询到数据
+        if(ObjectUtils.isNullOrEmpty(roleId)){
+            throw new JsureException(JsureErrorEnum.ERROR_CODE_341003.getErrorCode(),
+                    JsureErrorEnum.ERROR_CODE_341003.getErrorDesc());
+        }
+        return roleId;
     }
 }

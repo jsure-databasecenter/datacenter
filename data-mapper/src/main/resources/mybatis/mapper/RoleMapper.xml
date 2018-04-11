@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jsure.datacenter.mapper.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.jsure.datacenter.entitymodel.Role" >
+  <resultMap id="BaseResultMap" type="com.jsure.datacenter.model.entitymodel.Role" >
     <result column="ID" property="id" jdbcType="INTEGER" />
     <result column="Name" property="name" jdbcType="NVARCHAR" />
     <result column="ParentId" property="parentid" jdbcType="INTEGER" />
@@ -15,7 +15,7 @@
     <result column="WriterRoleId" property="writerroleid" jdbcType="INTEGER" />
     <result column="DepartmentId" property="departmentid" jdbcType="BIGINT" />
   </resultMap>
-  <insert id="insert" parameterType="com.jsure.datacenter.entitymodel.Role" >
+  <insert id="insert" parameterType="com.jsure.datacenter.model.entitymodel.Role" >
     insert into Role (ID, Name, ParentId, 
       Info, BusinessPermissionString, CreateTime, 
       UpdateTime, IsDelete, Status, 
@@ -27,7 +27,7 @@
       #{writerid,jdbcType=INTEGER}, #{writerroleid,jdbcType=INTEGER}, #{departmentid,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jsure.datacenter.entitymodel.Role" >
+  <insert id="insertSelective" parameterType="com.jsure.datacenter.model.entitymodel.Role" >
     insert into Role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

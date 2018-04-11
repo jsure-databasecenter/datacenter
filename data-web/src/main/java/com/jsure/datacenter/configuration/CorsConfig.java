@@ -16,6 +16,12 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class CorsConfig {
 
+    private static String[] originsVal = new String[]{
+            "trialcentral.cn",
+            "localhost"
+    };
+
+
     private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         // 1 设置访问源地址
@@ -24,6 +30,8 @@ public class CorsConfig {
         corsConfiguration.addAllowedHeader("*");
         // 3 设置访问源请求方法
         corsConfiguration.addAllowedMethod("*");
+        // 跨域session共享
+        corsConfiguration.setAllowCredentials(true);
         return corsConfiguration;
     }
 
@@ -33,6 +41,13 @@ public class CorsConfig {
         // 4 对接口配置跨域设置
         source.registerCorsConfiguration("/**", buildConfig());
         return new CorsFilter(source);
+    }
+
+    private void addAllowedOrigins(CorsConfiguration corsConfiguration) {
+        for (String origin : originsVal) {
+            corsConfiguration.addAllowedOrigin("http://" + origin);
+            corsConfiguration.addAllowedOrigin("https://" + origin);
+        }
     }
 
 

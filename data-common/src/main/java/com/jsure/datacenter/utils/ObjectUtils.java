@@ -27,17 +27,17 @@ public class ObjectUtils {
         do {
             clazzs.add(clazz);
             clazz = clazz.getSuperclass();
-        } while(!clazz.equals(Object.class));
+        } while (!clazz.equals(Object.class));
 
         Iterator var4 = clazzs.iterator();
 
-        while(var4.hasNext()) {
-            Class iClazz = (Class)var4.next();
+        while (var4.hasNext()) {
+            Class iClazz = (Class) var4.next();
             Field[] fields = iClazz.getDeclaredFields();
             Field[] var7 = fields;
             int var8 = fields.length;
 
-            for(int var9 = 0; var9 < var8; ++var9) {
+            for (int var9 = 0; var9 < var8; ++var9) {
                 Field field = var7[var9];
                 Object objVal = null;
                 field.setAccessible(true);
@@ -61,10 +61,10 @@ public class ObjectUtils {
             Object obj = type.newInstance();
             PropertyDescriptor[] propertyDescriptors = e.getPropertyDescriptors();
 
-            for(int i = 0; i < propertyDescriptors.length; ++i) {
+            for (int i = 0; i < propertyDescriptors.length; ++i) {
                 PropertyDescriptor descriptor = propertyDescriptors[i];
                 String propertyName = descriptor.getName();
-                if(map.containsKey(propertyName)) {
+                if (map.containsKey(propertyName)) {
                     Object value = map.get(propertyName);
                     Object[] args = new Object[]{value};
 
@@ -86,25 +86,25 @@ public class ObjectUtils {
     }
 
     public static boolean isNullOrEmpty(Object obj) {
-        if(obj == null) {
+        if (obj == null) {
             return true;
-        } else if(obj instanceof CharSequence) {
-            return ((CharSequence)obj).length() == 0;
-        } else if(obj instanceof Collection) {
-            return ((Collection)obj).isEmpty();
-        } else if(obj instanceof Map) {
-            return ((Map)obj).isEmpty();
-        } else if(!(obj instanceof Object[])) {
+        } else if (obj instanceof CharSequence) {
+            return ((CharSequence) obj).length() == 0;
+        } else if (obj instanceof Collection) {
+            return ((Collection) obj).isEmpty();
+        } else if (obj instanceof Map) {
+            return ((Map) obj).isEmpty();
+        } else if (!(obj instanceof Object[])) {
             return false;
         } else {
-            Object[] object = (Object[])((Object[])obj);
-            if(object.length == 0) {
+            Object[] object = (Object[]) ((Object[]) obj);
+            if (object.length == 0) {
                 return true;
             } else {
                 boolean empty = true;
 
-                for(int i = 0; i < object.length; ++i) {
-                    if(!isNullOrEmpty(object[i])) {
+                for (int i = 0; i < object.length; ++i) {
+                    if (!isNullOrEmpty(object[i])) {
                         empty = false;
                         break;
                     }

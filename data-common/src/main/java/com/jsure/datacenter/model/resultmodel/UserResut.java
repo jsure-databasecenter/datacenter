@@ -1,11 +1,23 @@
-package com.jsure.datacenter.entitymodel;
+package com.jsure.datacenter.model.resultmodel;
 
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
+/**
+ * @Author: wuxiaobiao
+ * @Description:
+ * @Date: Created in 2018/4/9
+ * @Time: 18:22
+ * I am a Code Man -_-!
+ */
 @Getter
 @Setter
-public class User {
+public class UserResut implements Serializable{
+
+    private static final long serialVersionUID = -4624117358333049614L;
+
     private Integer id;
 
     private Integer roleid;
@@ -55,6 +67,4 @@ public class User {
     private Integer iconid;
 
     private String dduserid;
-
-
 }

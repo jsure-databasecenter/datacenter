@@ -21,7 +21,7 @@ import java.util.Map;
  * I am a Code Man -_-!
  */
 @Slf4j
-public class JsonUtils {
+public class JsonUtil {
 
     private static ObjectMapper objectMapper = null;
 
@@ -33,7 +33,7 @@ public class JsonUtils {
         }
     }
 
-    private JsonUtils() {
+    private JsonUtil() {
 
     }
 

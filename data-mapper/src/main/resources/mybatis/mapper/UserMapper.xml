@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jsure.datacenter.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.jsure.datacenter.entitymodel.User" >
+  <resultMap id="BaseResultMap" type="com.jsure.datacenter.model.entitymodel.User" >
     <result column="ID" property="id" jdbcType="INTEGER" />
     <result column="RoleId" property="roleid" jdbcType="INTEGER" />
     <result column="LoginName" property="loginname" jdbcType="NVARCHAR" />
@@ -28,7 +28,7 @@
     <result column="IconId" property="iconid" jdbcType="INTEGER" />
     <result column="DDUserId" property="dduserid" jdbcType="NVARCHAR" />
   </resultMap>
-  <insert id="insert" parameterType="com.jsure.datacenter.entitymodel.User" >
+  <insert id="insert" parameterType="com.jsure.datacenter.model.entitymodel.User" >
     insert into User (ID, RoleId, LoginName, 
       DeleteID1, FullName, Mobile, 
       DeleteID2, TelePhone, ProvinceId, 
@@ -48,7 +48,7 @@
       #{writerroleid,jdbcType=INTEGER}, #{iconid,jdbcType=INTEGER}, #{dduserid,jdbcType=NVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jsure.datacenter.entitymodel.User" >
+  <insert id="insertSelective" parameterType="com.jsure.datacenter.model.entitymodel.User" >
     insert into User
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="selectByPrimaryKey" parameterType="com.jsure.datacenter.entitymodel.User" resultMap="BaseResultMap" >
+  <select id="selectByPrimaryKey" parameterType="Integer" resultMap="BaseResultMap" >
      select ID, RoleId, LoginName,
       DeleteID1, FullName, Mobile,
       DeleteID2, TelePhone, ProvinceId,
@@ -217,5 +217,11 @@
       from [User]
       WHERE
       ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectRoleIdByUserId" parameterType="Integer" resultType="Integer" >
+    select RoleId
+    from [User]
+    WHERE
+    ID = #{id,jdbcType=INTEGER}
   </select>
 </mapper>
