@@ -57,7 +57,7 @@ public class LoginController {
             permission = roleResult.getBusinesspermissionstring().split(",");
             //将权限存入Session
             session.setAttribute("userToken",token);
-            session.setAttribute("permission",permission);
+            session.setAttribute("roleResult",roleResult);
             log.info("success to login, RESULT:{}", permission);
         }catch (JsureException jex){
             log.info("failed to login, RESULT:{}", permission);
