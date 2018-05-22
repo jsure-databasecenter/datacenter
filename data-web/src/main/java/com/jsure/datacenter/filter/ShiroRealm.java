@@ -1,18 +1,25 @@
 package com.jsure.datacenter.filter;
 
+import com.google.common.base.Throwables;
+import com.jsure.datacenter.constant.SystemConstant;
+import com.jsure.datacenter.model.entitymodel.TUser;
 import com.jsure.datacenter.service.TokenService;
+import com.jsure.datacenter.utils.ObjectUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cache.Cache;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.security.MessageDigest;
+import java.util.List;
 
 /**
  * @Author: wuxiaobiao
@@ -29,6 +36,11 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private TokenService tokenService;
+
+    @Override
+    public String getName() {
+        return "shiroRealm";
+    }
 
     /**
      * 授权方法
@@ -72,14 +84,25 @@ public class ShiroRealm extends AuthorizingRealm {
     }
 
     /**
-     * 认证回调函数,登录时调用  此处已自定义处理，不需调用此类
+     * 认证回调函数,登录时调用
      *
      * @param authcToken
      * @return
      * @throws AuthenticationException
      */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) {
-        return null;
+        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        TUser user = null;
+        try {
+            //根据登陆名查询用户信息
+            user = tokenService.findUserByUserName(token.getUsername());
+        } catch (Exception e) {
+            log.error("failed to doGetAuthenticationInfo, PARAMETER:{}, CAUSE:{}", token, Throwables.getStackTraceAsString(e));
+        }
+        if (ObjectUtils.isNullOrEmpty(user)) {
+            throw new UnknownAccountException();
+        }
+        return new SimpleAuthenticationInfo(user, user.getPassword(), ByteSource.Util.bytes(SystemConstant.JWT_SECERT), getName());
     }
 
     /**
@@ -100,5 +123,25 @@ public class ShiroRealm extends AuthorizingRealm {
         }
         Subject subject = SecurityUtils.getSubject();
         subject.releaseRunAs();
+    }
+
+
+    public static void main(String[] args) {
+        //加密方式
+        String algorithmName="MD5";
+
+        //加密的字符串
+        String source="123456";
+
+        //盐值，用于和密码混合起来用
+        ByteSource salt = ByteSource.Util.bytes(SystemConstant.JWT_SECERT);
+
+        //加密的次数,可以进行多次的加密操作
+        int hashIterations = 2;
+
+        //通过SimpleHash 来进行加密操作
+        SimpleHash hash = new SimpleHash(algorithmName, source, salt, hashIterations);
+
+        System.out.println(hash.toString());
     }
 }

@@ -1,5 +1,6 @@
 package com.jsure.datacenter.filter;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -28,10 +29,11 @@ public class ShiroConfig {
 
     /**
      * 安全管理器
+     *
      * @return
      */
     @Bean
-    public DefaultWebSecurityManager securityManager(){
+    public DefaultWebSecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(shiroRealm());
         securityManager.setSessionManager(sessionManager());
@@ -40,28 +42,33 @@ public class ShiroConfig {
 
     /**
      * Realm配置
+     *
      * @return
      */
     @Bean
-    public ShiroRealm shiroRealm(){
-        return new ShiroRealm();
+    public ShiroRealm shiroRealm() {
+        ShiroRealm shiroRealm = new ShiroRealm();
+        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return shiroRealm;
     }
 
     /**
      * SessionDAO配置
+     *
      * @return
      */
     @Bean
-    public SessionDAO sessionDAO(){
+    public SessionDAO sessionDAO() {
         return new MemorySessionDAO();
     }
 
     /**
      * sessionManager配置
+     *
      * @return
      */
     @Bean
-    public DefaultWebSessionManager sessionManager(){
+    public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionDAO(sessionDAO());
         return sessionManager;
@@ -69,10 +76,11 @@ public class ShiroConfig {
 
     /**
      * shiroFilter配置
+     *
      * @return
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager());
         //注意过滤器配置顺序 不能颠倒
@@ -106,7 +114,23 @@ public class ShiroConfig {
     }
 
     /**
+     * 凭证匹配器
+     * （由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了）
+     *
+     * @return
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");//散列算法:这里使用MD5算法;
+        hashedCredentialsMatcher.setHashIterations(2);//散列的次数，比如散列两次，相当于 md5(md5(""));
+        return hashedCredentialsMatcher;
+    }
+
+
+    /**
      * 加入注解的使用，不加入这个注解不生效 使用shiro框架提供的切面类，用于创建代理对象
+     *
      * @param securityManager
      * @return
      */

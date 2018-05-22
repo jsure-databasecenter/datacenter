@@ -28,7 +28,8 @@ public enum SystemErrorEnum {
     ERROR_CODE_341003("341003", "该用户没有绑定角色"),
     ERROR_CODE_341004("341004", "未查询到用户信息"),
     ERROR_CODE_341005("341005", "用户名不存在"),
-    ERROR_CODE_341006("341006", "密码错误");
+    ERROR_CODE_341006("341006", "密码错误"),
+    ERROR_CODE_341007("341007", "登录失败");
 
 
     @Getter
