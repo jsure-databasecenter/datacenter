@@ -26,10 +26,10 @@ mybatis:
 
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost;DatabaseName=JsureDataCenter;characterEncoding=UTF-8
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: sa
-    password: jsure@123
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
     initial-size: 1  #指定启动连接池时，初始建立的连接数量
     min-idle: 1 #指定必须保持连接的最小值
     max-active: 20 #指定连接池中最大的活跃连接数.

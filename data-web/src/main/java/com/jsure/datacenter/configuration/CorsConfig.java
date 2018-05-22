@@ -13,7 +13,7 @@ import org.springframework.web.filter.CorsFilter;
  * @Time: 16:00
  * I am a Code Man -_-!
  */
-@Configuration
+//@Configuration
 public class CorsConfig {
 
     private static String[] originsVal = new String[]{

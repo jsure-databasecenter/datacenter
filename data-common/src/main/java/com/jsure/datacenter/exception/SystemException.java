@@ -9,28 +9,28 @@ import lombok.Getter;
  * @Time: 18:01
  * I am a Code Man -_-!
  */
-public class JsureException extends RuntimeException {
+public class SystemException extends RuntimeException {
 
     private static final long serialVersionUID = -3320578247182194189L;
 
     @Getter
     private String code;
 
-    public JsureException(String code) {
+    public SystemException(String code) {
         this.code = code;
     }
 
-    public JsureException(String code, Throwable throwable) {
+    public SystemException(String code, Throwable throwable) {
         super(throwable);
         this.code = code;
     }
 
-    public JsureException(String code, String message) {
+    public SystemException(String code, String message) {
         super(message);
         this.code = code;
     }
 
-    public JsureException(String code, String message, Throwable throwable) {
+    public SystemException(String code, String message, Throwable throwable) {
         super(message, throwable);
         this.code = code;
     }

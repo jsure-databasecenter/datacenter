@@ -118,4 +118,25 @@ public class ObjectUtils {
     public static boolean isNotNullAndEmpty(Object obj) {
         return !isNullOrEmpty(obj);
     }
+
+
+    /**
+     *
+     * <功能详细描述>判断传入的参数是否含有空或者null
+     * @param val
+     * @return
+     * @see [类、类#方法、类#成员]
+     */
+    public static boolean isNull(String... val)
+    {
+        for (String str : val)
+        {
+            if (!isNullOrEmpty(str))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

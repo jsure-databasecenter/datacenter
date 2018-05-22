@@ -1,6 +1,7 @@
 package com.jsure.datacenter.utils;
 
 import com.google.common.base.MoreObjects;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -11,7 +12,8 @@ import java.io.Serializable;
  * @Time: 13:14
  * I am a Code Man -_-!
  */
-public class Response<T> implements Serializable {
+@Data
+public class R<T> implements Serializable {
 
     private static final long serialVersionUID = -8705057226888494469L;
     private boolean success;
@@ -19,15 +21,15 @@ public class Response<T> implements Serializable {
     private String errorCode;
     private String errorMsg;
 
-    public Response() {
+    public R() {
     }
 
-    public Response(T result) {
+    public R(T result) {
         this.success = true;
         this.result = result;
     }
 
-    public Response(boolean flag, T result) {
+    public R(boolean flag, T result) {
         if(flag) {
             this.success = true;
             this.result = result;
@@ -38,12 +40,12 @@ public class Response<T> implements Serializable {
 
     }
 
-    public Response(String errorCode) {
+    public R(String errorCode) {
         this.success = false;
         this.errorCode = errorCode;
     }
 
-    public Response(String errorCode, String errorMsg) {
+    public R(String errorCode, String errorMsg) {
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
     }
@@ -82,7 +84,7 @@ public class Response<T> implements Serializable {
         if(this == o) {
             return true;
         } else if(o != null && this.getClass() == o.getClass()) {
-            Response response = (Response)o;
+            R response = (R)o;
             return this.success != response.success?false:(!this.errorCode.equals(response.errorCode)?false:this.result.equals(response.result));
         } else {
             return false;

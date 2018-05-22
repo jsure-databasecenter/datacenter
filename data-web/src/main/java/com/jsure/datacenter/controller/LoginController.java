@@ -2,8 +2,8 @@ package com.jsure.datacenter.controller;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
-import com.jsure.datacenter.exception.JsureException;
-import com.jsure.datacenter.model.enummodel.JsureErrorEnum;
+import com.jsure.datacenter.exception.SystemException;
+import com.jsure.datacenter.model.enummodel.SystemErrorEnum;
 import com.jsure.datacenter.service.RoleService;
 import com.jsure.datacenter.service.UserService;
 import com.jsure.datacenter.utils.JsonUtil;
@@ -60,13 +60,13 @@ public class LoginController {
             session.setAttribute("permission", permission);
             resultMap.put("permission", permission);
             log.info("success to login, RESULT:{}", resultMap);
-        } catch (JsureException jex) {
+        } catch (SystemException jex) {
             resultMap.put("errorCode", jex.getCode());
             resultMap.put("errorMsg", jex.getMessage());
             log.error("failed to login, RESULT:{},cause:{}", resultMap, jex);
         } catch (Exception e) {
-            resultMap.put("errorCode", JsureErrorEnum.ERROR_CODE_341FFF.getErrorCode());
-            resultMap.put("errorMsg", JsureErrorEnum.ERROR_CODE_341FFF.getErrorDesc());
+            resultMap.put("errorCode", SystemErrorEnum.ERROR_CODE_341FFF.getErrorCode());
+            resultMap.put("errorMsg", SystemErrorEnum.ERROR_CODE_341FFF.getErrorDesc());
             log.error("failed to login,RESULT:{}, cause:{}", resultMap, Throwables.getStackTraceAsString(e));
         }
         return JsonUtil.obj2json(resultMap);

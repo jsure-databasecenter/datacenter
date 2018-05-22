@@ -41,6 +41,16 @@
 		<slf4j-version>1.7.25</slf4j-version>
 	</properties>
 
+	<!--<dependency>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-devtools</artifactId>-->
+		<!--<optional>true</optional>-->
+		<!--<scope>true</scope>-->
+	<!--</dependency>-->
+	<!--<dependency>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-devtools</artifactId>-->
+	<!--</dependency>-->
 
 	<dependencyManagement>
 		<dependencies>
@@ -83,5 +93,17 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<!--<build>-->
+		<!--<plugins>-->
+			<!--<plugin>-->
+				<!--<groupId>org.springframework.boot</groupId>-->
+				<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+				<!--<configuration>-->
+					<!--&lt;!&ndash; 如果不设置fork,那么不会restart,devtools热部署不会起作用&ndash;&gt;-->
+					<!--<fork>true</fork>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+		<!--</plugins>-->
+	<!--</build>-->
 
 </project>

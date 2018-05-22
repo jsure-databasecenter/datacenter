@@ -1,10 +1,9 @@
 package com.jsure.datacenter.serviceImpl;
 
 import com.jsure.datacenter.model.entitymodel.User;
-import com.jsure.datacenter.model.enummodel.JsureErrorEnum;
-import com.jsure.datacenter.exception.JsureException;
+import com.jsure.datacenter.model.enummodel.SystemErrorEnum;
+import com.jsure.datacenter.exception.SystemException;
 import com.jsure.datacenter.mapper.UserMapper;
-import com.jsure.datacenter.model.resultmodel.RoleResult;
 import com.jsure.datacenter.model.resultmodel.UserResut;
 import com.jsure.datacenter.service.UserService;
 import com.jsure.datacenter.utils.BeanMapper;
@@ -30,8 +29,8 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectByPrimaryKey(id);
         //如果没有查询到数据
         if(ObjectUtils.isNullOrEmpty(user)){
-            throw new JsureException(JsureErrorEnum.ERROR_CODE_341004.getErrorCode(),
-                    JsureErrorEnum.ERROR_CODE_341004.getErrorDesc());
+            throw new SystemException(SystemErrorEnum.ERROR_CODE_341004.getErrorCode(),
+                    SystemErrorEnum.ERROR_CODE_341004.getErrorDesc());
         }
         UserResut result = new UserResut();
         BeanMapper.copy(user, result);
@@ -43,8 +42,8 @@ public class UserServiceImpl implements UserService {
         Integer roleId = userMapper.selectRoleIdByUserId(id);
         //如果没有查询到数据
         if(ObjectUtils.isNullOrEmpty(roleId)){
-            throw new JsureException(JsureErrorEnum.ERROR_CODE_341003.getErrorCode(),
-                    JsureErrorEnum.ERROR_CODE_341003.getErrorDesc());
+            throw new SystemException(SystemErrorEnum.ERROR_CODE_341003.getErrorCode(),
+                    SystemErrorEnum.ERROR_CODE_341003.getErrorDesc());
         }
         return roleId;
     }
